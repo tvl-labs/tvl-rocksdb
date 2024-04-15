@@ -82,7 +82,7 @@ fn main() {
     if cfg!(feature = "lz4") {
         println!("cargo:rustc-link-lib=static=lz4");
     }
-    if cfg!(feature = "lib-uring") {
+    if cfg!(feature = "io-uring") {
         println!("cargo:rustc-link-lib=static=uring");
     }
 
