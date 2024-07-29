@@ -152,7 +152,6 @@ impl TransactionDb {
         value: &[u8],
     ) -> Result<()> {
         let cf = self.inner.get_cf(col);
-        assert!(!cf.is_null());
         moveit! {
             let status = unsafe { self.inner.put(options, cf, &key.into(), &value.into()) };
         }

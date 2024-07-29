@@ -1,6 +1,6 @@
 [package]
 name = "tvl-rocksdb"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 description = "Rust binding of RocksDB's C++ API"
 authors = ["Khalani Dev"]
@@ -9,8 +9,8 @@ license = "MIT"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-autocxx = "0.26.0"
-tvl-librocksdb-sys = { path = "librocksdb-sys", version = "8.11.3"}
+autocxx = "0.27.0"
+tvl-librocksdb-sys = { path = "librocksdb-sys", version = "9.4.0"}
 moveit = "0.6.0"
 
 [dev-dependencies]
