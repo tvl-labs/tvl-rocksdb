@@ -13,7 +13,7 @@ jobs:
         with:
           profile: minimal
           components: rustfmt, clippy
-          toolchain: 1.75.0
+          toolchain: 1.79.0
       - name: Install liburing
         run: sudo apt-get install liburing2 liburing-dev clang
       - name: Cargo fmt
@@ -30,7 +30,7 @@ jobs:
       - uses: actions-rs/toolchain@v1
         with:
           profile: minimal
-          toolchain: 1.75.0
+          toolchain: 1.79.0
       - name: Install liburing
         run: sudo apt-get install liburing2 liburing-dev clang libsnappy-dev
       - name: Cargo test
