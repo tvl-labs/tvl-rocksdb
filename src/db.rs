@@ -152,7 +152,6 @@ impl TransactionDb {
         value: &[u8],
     ) -> Result<()> {
         let cf = self.inner.get_cf(col);
-        assert!(!cf.is_null());
         moveit! {
             let status = unsafe { self.inner.put(options, cf, &key.into(), &value.into()) };
         }
@@ -166,7 +165,6 @@ impl TransactionDb {
         key: &[u8],
     ) -> Result<()> {
         let cf = self.inner.get_cf(col);
-        assert!(!cf.is_null());
         moveit! {
             let status = unsafe { self.inner.del(options, cf, &key.into()) };
         }
@@ -200,7 +198,6 @@ impl TransactionDb {
         slot: Slot<'a, PinnableSlice>,
     ) -> Result<Option<PinnedSlice<'a>>> {
         let cf = self.inner.get_cf(col);
-        assert!(!cf.is_null());
         let mut slice = slot.emplace(PinnableSlice::new());
         let slice_ptr = unsafe { slice.as_mut().get_unchecked_mut() };
         moveit! {
@@ -215,7 +212,6 @@ impl TransactionDb {
 
     pub fn get_int_property(&self, col: usize, property: &str) -> Option<u64> {
         let cf = self.inner.get_cf(col);
-        assert!(!cf.is_null());
         let mut val = 0;
         let got = unsafe {
             self.inner
@@ -272,7 +268,6 @@ impl TransactionDb {
         dir: Direction,
     ) -> DbIterator<&'a Self> {
         let cf = self.inner.get_cf(col);
-        assert!(!cf.is_null());
         unsafe { DbIterator::new(self.as_inner().iter(options, cf), dir) }
     }
 
@@ -311,7 +306,6 @@ impl TransactionDb {
         options: impl IntoIterator<Item = (K, V)>,
     ) -> Result<()> {
         let cf = self.inner.get_cf(col);
-        assert!(!cf.is_null());
         let (keys, values): (Vec<Slice>, Vec<Slice>) = options
             .into_iter()
             .map(|(k, v)| (k.as_ref().into(), v.as_ref().into()))
@@ -382,7 +376,6 @@ impl ReadOnlyDb {
         slot: Slot<'a, PinnableSlice>,
     ) -> Result<Option<PinnedSlice<'a>>> {
         let cf = self.inner.get_cf(col);
-        assert!(!cf.is_null());
         let mut slice = slot.emplace(PinnableSlice::new());
         let slice_ptr = unsafe { slice.as_mut().get_unchecked_mut() };
         moveit! {
@@ -409,7 +402,6 @@ impl ReadOnlyDb {
         dir: Direction,
     ) -> DbIterator<&'a Self> {
         let cf = self.inner.get_cf(col);
-        assert!(!cf.is_null());
         unsafe { DbIterator::new(self.as_inner().iter(options, cf), dir) }
     }
 
